@@ -53,8 +53,8 @@
 
         function changeCookies($arrStr, $oldkey) {
             $content = str_replace('"'.$oldkey.'":', '"'.setCookies().'":', $arrStr);
-            $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/anniversary/winners.json","wb");
-            die('fff');
+            $fp = @fopen($_SERVER['DOCUMENT_ROOT'] . "/anniversary/winners.json","wb");
+            die($fp);
             exit;
             fwrite($fp, $content);
             fclose($fp);  
