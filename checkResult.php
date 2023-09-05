@@ -53,7 +53,7 @@
 
         function changeCookies($arrStr, $oldkey) {
             $content = str_replace('"'.$oldkey.'":', '"'.setCookies().'":', $arrStr);
-            $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/anniversary/sample.txt", 'r');
+            $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/anniversary/sample.txt", 'w');
             fwrite($fp, $content);
             fclose($fp);  
         }
