@@ -263,9 +263,6 @@
 </style>
 </head>
 <body>
-  <?php
-      echo "ggg";
-  ?>
   <div class="main-container">
     <div class="top-container">
       <div class="win-an-icecream-img-container">
@@ -516,8 +513,6 @@
     $(document).ready(function (){
       $.ajax({
         url : 'checkResult.php',
-        dataType: 'json',
-        contentType: 'application/json',
         type: 'POST',
         data: {
           "email" : $('#email').val()
