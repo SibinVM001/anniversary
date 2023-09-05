@@ -65,9 +65,9 @@
             } else {
                 foreach ($winnersJson as $key => $value) {
                     if (in_array($_SERVER['REMOTE_ADDR'], $remoteAddresses) || in_array($_SERVER['HTTP_USER_AGENT'], $devices)) {
-                        die('oo');
-                        exit;
                         if ($value['remote-address'] == $_SERVER['REMOTE_ADDR']) {
+                            die('oo');
+                            exit;
                             changeCookies($winnersStr, $key);
                             if ($value['coupon-code'] != '-') {
                                 echo $value['coupon-code'];
@@ -76,6 +76,8 @@
                             break;
                         } 
                         if ($value['device'] == $_SERVER['HTTP_USER_AGENT']) {
+                            die('ooyyyyy');
+                            exit;
                             changeCookies($winnersStr, $key);
                             if ($value['coupon-code'] != '-') {
                                 echo $value['coupon-code'];
@@ -84,8 +86,6 @@
                             break;
                         }
                     } else {
-                        die('iutyur');
-                        exit;
                         $rand = rand(0, $probability);
                         $_COOKIE['visited'] = setCookies();
         
