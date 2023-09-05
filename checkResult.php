@@ -26,6 +26,8 @@
         }
 
         $str = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/anniversary/20BNQVSqbm1aoYh7yqSV.json");
+        die($str);
+        exit;
         $json = json_decode(decryptData($str), true);
 
         $winnersStr = file_get_contents('winners.json');
