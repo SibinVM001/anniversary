@@ -513,6 +513,8 @@
     $(document).ready(function (){
       $.ajax({
         url : 'checkResult.php',
+        dataType: 'json',
+        contentType: 'application/json',
         type: 'POST',
         data: {
           "email" : $('#email').val()
