@@ -278,7 +278,7 @@
     </div>
     <div class="top-text-container">
         <p class="top-text-content">
-          Scratch the card and get a chance to win an ice cream <span><img src="images/icecream-small.svg" alt="" srcset=""></span>
+          Scratch the card and get a chance to win an ice cream oooi<span><img src="images/icecream-small.svg" alt="" srcset=""></span>
         </p>
     </div>
     <div class="scratch-card-container">
