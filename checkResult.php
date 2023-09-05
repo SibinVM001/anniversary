@@ -49,8 +49,6 @@
             setcookie("visited", "".$randomNum."", $expire, "/", "", "0");
 
             return $randomNum;
-            die($randomNum);
-            exit;
         }
 
         function changeCookies($arrStr, $oldkey) {
@@ -59,7 +57,8 @@
             fwrite($fp, $content);
             fclose($fp);  
         }
-
+        die($_COOKIE['visited']);
+        exit;
         if (isset($_COOKIE['visited'])) {
             if (in_array($_COOKIE['visited'], array_keys($winnersJson))) {
                 echo $winnersJson[$_COOKIE['visited']]['coupon-code'];
