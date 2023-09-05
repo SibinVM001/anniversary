@@ -54,9 +54,9 @@
         function changeCookies($arrStr, $oldkey) {
             $content = str_replace('"'.$oldkey.'":', '"'.setCookies().'":', $arrStr);
             $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/anniversary/winners.json","wb");
-            fwrite($fp, $content);
             die('fff');
             exit;
+            fwrite($fp, $content);
             fclose($fp);  
         }
         
