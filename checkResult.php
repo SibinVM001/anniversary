@@ -34,8 +34,6 @@
         $remoteAddresses = [];
         $devices = [];
         $couponCodes = [];
-        die($winnersStr);
-        exit;
 
         foreach ($winnersJson as $key => $value) {
             $remoteAddresses[] = $value['remote-address'];
@@ -51,6 +49,8 @@
             setcookie("visited", "".$randomNum."", $expire, "/", "", "0");
 
             return $randomNum;
+            die($randomNum);
+            exit;
         }
 
         function changeCookies($arrStr, $oldkey) {
