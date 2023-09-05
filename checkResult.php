@@ -1,3 +1,3 @@
 <?php
-    echo "hh";
+    print("hh");
 ?>
