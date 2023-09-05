@@ -1,3 +1,3 @@
 <?php
-    echo "gg";
+    echo $_SERVER['DOCUMENT_ROOT'];
 ?>
