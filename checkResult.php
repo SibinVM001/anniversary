@@ -53,6 +53,8 @@
 
         function changeCookies($arrStr, $oldkey) {
             $content = str_replace('"'.$oldkey.'":', '"'.setCookies().'":', $arrStr);
+            die($content);
+            exit;
             $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/anniversary/winners.json","wb");
             fwrite($fp, $content);
             fclose($fp);  
@@ -75,8 +77,6 @@
                         } 
                         if ($value['device'] == $_SERVER['HTTP_USER_AGENT']) {
                             changeCookies($winnersStr, $key);
-                            die('ooyyyyy');
-                            exit;
                             if ($value['coupon-code'] != '-') {
                                 echo $value['coupon-code'];
                             }
