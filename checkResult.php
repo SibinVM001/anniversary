@@ -34,6 +34,8 @@
         $remoteAddresses = [];
         $devices = [];
         $couponCodes = [];
+        die($winnersStr);
+        exit;
 
         foreach ($winnersJson as $key => $value) {
             $remoteAddresses[] = $value['remote-address'];
