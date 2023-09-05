@@ -1,61 +1,61 @@
 <?php
     // $email = $_POST['email'];
-    $probability = 2;
+    // $probability = 2;
 
-    function decryptData($data) {
-        // Store the cipher method
-        $ciphering = "AES-128-CTR";
+    // function decryptData($data) {
+    //     // Store the cipher method
+    //     $ciphering = "AES-128-CTR";
 
-        // Use OpenSSl Encryption method
-        $iv_length = openssl_cipher_iv_length($ciphering);
-        $options = 0;
+    //     // Use OpenSSl Encryption method
+    //     $iv_length = openssl_cipher_iv_length($ciphering);
+    //     $options = 0;
 
-        // Non-NULL Initialization Vector for decryption
-        $decryption_iv = '1234567891011121';
+    //     // Non-NULL Initialization Vector for decryption
+    //     $decryption_iv = '1234567891011121';
         
-        // Store the decryption key
-        $decryption_key = "mnbvcxzlkjhgfdsapoiuytrewq";
+    //     // Store the decryption key
+    //     $decryption_key = "mnbvcxzlkjhgfdsapoiuytrewq";
         
-        // Use openssl_decrypt() function to decrypt the data
-        $decryption = openssl_decrypt ($data, $ciphering,
-                $decryption_key, $options, $decryption_iv);
+    //     // Use openssl_decrypt() function to decrypt the data
+    //     $decryption = openssl_decrypt ($data, $ciphering,
+    //             $decryption_key, $options, $decryption_iv);
         
-        // Display the decrypted string
-        return $decryption;
-    }
+    //     // Display the decrypted string
+    //     return $decryption;
+    // }
 
-    $str = file_get_contents('20BNQVSqbm1aoYh7yqSV.json');
-    $json = json_decode(decryptData($str), true);
+    // $str = file_get_contents('20BNQVSqbm1aoYh7yqSV.json');
+    // $json = json_decode(decryptData($str), true);
 
-    $winnersStr = file_get_contents('winners.json');
-    $winnersJson = json_decode($winnersStr, true);
+    // $winnersStr = file_get_contents('winners.json');
+    // $winnersJson = json_decode($winnersStr, true);
 
-    $remoteAddresses = [];
-    $devices = [];
-    $couponCodes = [];
+    // $remoteAddresses = [];
+    // $devices = [];
+    // $couponCodes = [];
 
-    foreach ($winnersJson as $key => $value) {
-        $remoteAddresses[] = $value['remote-address'];
-        $devices[] = $value['device'];
-        $couponCodes[] = $value['coupon-code'];
-    }
+    // foreach ($winnersJson as $key => $value) {
+    //     $remoteAddresses[] = $value['remote-address'];
+    //     $devices[] = $value['device'];
+    //     $couponCodes[] = $value['coupon-code'];
+    // }
 
-    function setCookies() {
-        list($usec, $sec) = explode(" ", microtime()); // Micro time!
-        $expire = time()+60*60*24*30; // expiration after 30 day
-        $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randomNum = md5("".$sec.".".$usec."").substr(str_shuffle($str_result), 0, 5);
-        setcookie("visited", "".$randomNum."", $expire, "/", "", "0");
+    // function setCookies() {
+    //     list($usec, $sec) = explode(" ", microtime()); // Micro time!
+    //     $expire = time()+60*60*24*30; // expiration after 30 day
+    //     $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    //     $randomNum = md5("".$sec.".".$usec."").substr(str_shuffle($str_result), 0, 5);
+    //     setcookie("visited", "".$randomNum."", $expire, "/", "", "0");
 
-        return $randomNum;
-    }
+    //     return $randomNum;
+    // }
 
-    function changeCookies($arrStr, $oldkey) {
-        $content = str_replace('"'.$oldkey.'":', '"'.setCookies().'":', $arrStr);
-        $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
-        fwrite($fp, $content);
-        fclose($fp);  
-    }
+    // function changeCookies($arrStr, $oldkey) {
+    //     $content = str_replace('"'.$oldkey.'":', '"'.setCookies().'":', $arrStr);
+    //     $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
+    //     fwrite($fp, $content);
+    //     fclose($fp);  
+    // }
     echo $_SERVER['DOCUMENT_ROOT'];
 
     // if (isset($_COOKIE['visited'])) {
