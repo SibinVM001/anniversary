@@ -56,127 +56,128 @@
         fwrite($fp, $content);
         fclose($fp);  
     }
+    echo $_SERVER['DOCUMENT_ROOT'];
 
-    if (isset($_COOKIE['visited'])) {
-        if (in_array($_COOKIE['visited'], array_keys($winnersJson))) {
-            echo $winnersJson[$_COOKIE['visited']]['coupon-code'];
+    // if (isset($_COOKIE['visited'])) {
+    //     if (in_array($_COOKIE['visited'], array_keys($winnersJson))) {
+    //         echo $winnersJson[$_COOKIE['visited']]['coupon-code'];
 
-        } else {
-            foreach ($winnersJson as $key => $value) {
-                if (in_array($_SERVER['REMOTE_ADDR'], $remoteAddresses) || in_array($_SERVER['HTTP_USER_AGENT'], $devices)) {
-                    if ($value['remote-address'] == $_SERVER['REMOTE_ADDR']) {
-                        changeCookies($winnersStr, $key);
-                        if ($value['coupon-code'] != '-') {
-                            echo $value['coupon-code'];
-                        }
+    //     } else {
+    //         foreach ($winnersJson as $key => $value) {
+    //             if (in_array($_SERVER['REMOTE_ADDR'], $remoteAddresses) || in_array($_SERVER['HTTP_USER_AGENT'], $devices)) {
+    //                 if ($value['remote-address'] == $_SERVER['REMOTE_ADDR']) {
+    //                     changeCookies($winnersStr, $key);
+    //                     if ($value['coupon-code'] != '-') {
+    //                         echo $value['coupon-code'];
+    //                     }
 
-                        break;
-                    } 
-                    if ($value['device'] == $_SERVER['HTTP_USER_AGENT']) {
-                        changeCookies($winnersStr, $key);
-                        if ($value['coupon-code'] != '-') {
-                            echo $value['coupon-code'];
-                        }
+    //                     break;
+    //                 } 
+    //                 if ($value['device'] == $_SERVER['HTTP_USER_AGENT']) {
+    //                     changeCookies($winnersStr, $key);
+    //                     if ($value['coupon-code'] != '-') {
+    //                         echo $value['coupon-code'];
+    //                     }
 
-                        break;
-                    }
-                } else {
-                    $rand = rand(0, $probability);
-                    $_COOKIE['visited'] = setCookies();
+    //                     break;
+    //                 }
+    //             } else {
+    //                 $rand = rand(0, $probability);
+    //                 $_COOKIE['visited'] = setCookies();
     
-                    if ($rand == $probability) {
-                        foreach ($json as $key => $number) {
-                            if (!in_array($number, $couponCodes)) {
-                                $winnersJson[$_COOKIE['visited']] = [
-                                    "remote-address" => $_SERVER['REMOTE_ADDR'],
-                                    "device" => $_SERVER['HTTP_USER_AGENT'],
-                                    // "email" => $email,
-                                    "coupon-code" => $number
-                                ];
+    //                 if ($rand == $probability) {
+    //                     foreach ($json as $key => $number) {
+    //                         if (!in_array($number, $couponCodes)) {
+    //                             $winnersJson[$_COOKIE['visited']] = [
+    //                                 "remote-address" => $_SERVER['REMOTE_ADDR'],
+    //                                 "device" => $_SERVER['HTTP_USER_AGENT'],
+    //                                 // "email" => $email,
+    //                                 "coupon-code" => $number
+    //                             ];
     
-                                $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
-                                fwrite($fp, json_encode($winnersJson));
-                                fclose($fp);
+    //                             $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
+    //                             fwrite($fp, json_encode($winnersJson));
+    //                             fclose($fp);
     
-                                echo $number;
+    //                             echo $number;
     
-                                break;
-                            }
-                        }
-                    } else {
-                        $winnersJson[$_COOKIE['visited']] = [
-                            "remote-address" => $_SERVER['REMOTE_ADDR'],
-                            "device" => $_SERVER['HTTP_USER_AGENT'],
-                            // "email" => $email,
-                            "coupon-code" => '-'
-                        ];
+    //                             break;
+    //                         }
+    //                     }
+    //                 } else {
+    //                     $winnersJson[$_COOKIE['visited']] = [
+    //                         "remote-address" => $_SERVER['REMOTE_ADDR'],
+    //                         "device" => $_SERVER['HTTP_USER_AGENT'],
+    //                         // "email" => $email,
+    //                         "coupon-code" => '-'
+    //                     ];
     
-                        $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
-                        fwrite($fp, json_encode($winnersJson));
-                        fclose($fp);
+    //                     $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
+    //                     fwrite($fp, json_encode($winnersJson));
+    //                     fclose($fp);
     
-                        echo "-";
-                    }
-                    break;
-                }
-            }
-        }
-    } else {
-        foreach ($winnersJson as $key => $value) {
-            if (in_array($_SERVER['REMOTE_ADDR'], $remoteAddresses) || in_array($_SERVER['HTTP_USER_AGENT'], $devices)) {
-                if ($value['remote-address'] == $_SERVER['REMOTE_ADDR']) {
-                    changeCookies($winnersStr, $key);
-                    echo $value['coupon-code'];
+    //                     echo "-";
+    //                 }
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // } else {
+    //     foreach ($winnersJson as $key => $value) {
+    //         if (in_array($_SERVER['REMOTE_ADDR'], $remoteAddresses) || in_array($_SERVER['HTTP_USER_AGENT'], $devices)) {
+    //             if ($value['remote-address'] == $_SERVER['REMOTE_ADDR']) {
+    //                 changeCookies($winnersStr, $key);
+    //                 echo $value['coupon-code'];
 
-                    break;
-                } 
-                if ($value['device'] == $_SERVER['HTTP_USER_AGENT']) {
-                    changeCookies($winnersStr, $key);
-                    echo $value['coupon-code'];
+    //                 break;
+    //             } 
+    //             if ($value['device'] == $_SERVER['HTTP_USER_AGENT']) {
+    //                 changeCookies($winnersStr, $key);
+    //                 echo $value['coupon-code'];
 
-                    break;
-                }
-            } else {
-                $rand = rand(0, $probability);
-                $_COOKIE['visited'] = setCookies();
+    //                 break;
+    //             }
+    //         } else {
+    //             $rand = rand(0, $probability);
+    //             $_COOKIE['visited'] = setCookies();
 
-                if ($rand == $probability) {
-                    foreach ($json as $key => $number) {
-                        if (!in_array($number, $couponCodes)) {
-                            $winnersJson[$_COOKIE['visited']] = [
-                                "remote-address" => $_SERVER['REMOTE_ADDR'],
-                                "device" => $_SERVER['HTTP_USER_AGENT'],
-                                // "email" => $email,
-                                "coupon-code" => $number
-                            ];
+    //             if ($rand == $probability) {
+    //                 foreach ($json as $key => $number) {
+    //                     if (!in_array($number, $couponCodes)) {
+    //                         $winnersJson[$_COOKIE['visited']] = [
+    //                             "remote-address" => $_SERVER['REMOTE_ADDR'],
+    //                             "device" => $_SERVER['HTTP_USER_AGENT'],
+    //                             // "email" => $email,
+    //                             "coupon-code" => $number
+    //                         ];
 
-                            $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
-                            fwrite($fp, json_encode($winnersJson));
-                            fclose($fp);
+    //                         $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
+    //                         fwrite($fp, json_encode($winnersJson));
+    //                         fclose($fp);
 
-                            echo $number;
+    //                         echo $number;
 
-                            break;
-                        }
-                    }
-                } else {
-                    $winnersJson[$_COOKIE['visited']] = [
-                        "remote-address" => $_SERVER['REMOTE_ADDR'],
-                        "device" => $_SERVER['HTTP_USER_AGENT'],
-                        // "email" => $email,
-                        "coupon-code" => '-'
-                    ];
+    //                         break;
+    //                     }
+    //                 }
+    //             } else {
+    //                 $winnersJson[$_COOKIE['visited']] = [
+    //                     "remote-address" => $_SERVER['REMOTE_ADDR'],
+    //                     "device" => $_SERVER['HTTP_USER_AGENT'],
+    //                     // "email" => $email,
+    //                     "coupon-code" => '-'
+    //                 ];
 
-                    $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
-                    fwrite($fp, json_encode($winnersJson));
-                    fclose($fp);
+    //                 $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/winners.json","wb");
+    //                 fwrite($fp, json_encode($winnersJson));
+    //                 fclose($fp);
 
-                    echo "-";
-                }
-                break;
-            }
-        }
-    }
+    //                 echo "-";
+    //             }
+    //             break;
+    //         }
+    //     }
+    // }
 
 
 
