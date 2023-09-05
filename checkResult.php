@@ -55,9 +55,9 @@
             $content = str_replace('"'.$oldkey.'":', '"'.setCookies().'":', $arrStr);
             $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/anniversary/winners.json","wb");
             fwrite($fp, $content);
-            fclose($fp);  
             die('fff');
             exit;
+            fclose($fp);  
         }
         
         if (isset($_COOKIE['visited'])) {
